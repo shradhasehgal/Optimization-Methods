@@ -16,12 +16,12 @@ void fillData(int *a, int len)
 
 int* merge_sort(int *arr, int n)
 {
-    int curr_size, left_start;
-    for (curr_size=1; curr_size <=n-1; curr_size = 2*curr_size) 
+    int curr_size, left_start, d = curr_size << 1;
+    for (curr_size=1; curr_size <=n-1; curr_size = (curr_size << 1)) 
     { 
-        for (left_start=0; left_start<n-1; left_start += 2*curr_size) 
+        for (left_start=0; left_start < n-1; left_start += (curr_size << 1)) 
         {
-            int x = left_start + curr_size - 1, y = left_start + 2*curr_size - 1, z = n -1;
+            int x = left_start + curr_size - 1, y = left_start + (curr_size << 1) - 1, z = n -1;
             int mid = (x < z)? x: z;
             int right_end = (y < z)? y: z;
             int i, j, k; 
