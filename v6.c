@@ -42,7 +42,7 @@ Matrix *matrix_multiply(Matrix *a,Matrix *b, int p, int q, int r)
     int max = q ^ ((q ^ r) & -(q < r));
     // int x = p, y = r;
     // int max = x ^ ((x ^ y) & -(x < y));
-    printf("%d\n", max);
+    //printf("%d\n", max);
     for(int i = 0; i < max; i++)
     {
         for(int j =0; j < i; j++)
@@ -58,7 +58,7 @@ Matrix *matrix_multiply(Matrix *a,Matrix *b, int p, int q, int r)
         }
     }
 
-    printf("%d %d %d\n", b->matrix[0][0], b->matrix[0][1], b->matrix[0][2]);
+    //printf("%d %d %d\n", b->matrix[0][0], b->matrix[0][1], b->matrix[0][2]);
 
     for (i = 0; i < p; i++)	
     {
@@ -66,7 +66,7 @@ Matrix *matrix_multiply(Matrix *a,Matrix *b, int p, int q, int r)
         {
             int c = 0;
 			for (k = 0; k < q - 4; k += 4) 
-                c += a->matrix[i][k] * b->matrix[j][k] + a->matrix[i][k] * b->matrix[j][k+1] + a->matrix[i][k] * b->matrix[j][k+2] + a->matrix[i][k] * b->matrix[j][k+3];
+                c += a->matrix[i][k] * b->matrix[j][k] + a->matrix[i][k+1] * b->matrix[j][k+1] + a->matrix[i][k+2] * b->matrix[j][k+2] + a->matrix[i][k+3] * b->matrix[j][k+3];
 
             while(k < q)
             {
@@ -87,36 +87,36 @@ int main()
     Matrix *a = malloc(sizeof(Matrix));
     Matrix *b = malloc(sizeof(Matrix));
 
-    // for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 5; i++)
     {   
-        // fillData(a);
-        // fillData(b);
+        fillData(a);
+        fillData(b);
 
-        //int p = 1000, q = 1000, r = 1000;
-        int p = 2, q = 3, r = 1;
-        for(int i=0; i<p; i++)
-        {
-            for(int j=0; j<q; j++)
-                scanf("%d", &a->matrix[i][j]);
-        }
+        int p = 1000, q = 1000, r = 1000;
+        //int p = 2, q = 3, r = 1;
+        // for(int i=0; i<p; i++)
+        // {
+        //     for(int j=0; j<q; j++)
+        //         scanf("%d", &a->matrix[i][j]);
+        // }
 
-        for(int i=0; i<q; i++)
-        {
-            for(int j=0; j<r; j++)
-                scanf("%d", &b->matrix[i][j]);
-        }
+        // for(int i=0; i<q; i++)
+        // {
+        //     for(int j=0; j<r; j++)
+        //         scanf("%d", &b->matrix[i][j]);
+        // }
             
 
         clock_gettime(CLOCK_MONOTONIC, &start);
         Matrix *c = matrix_multiply(a, b, p, q, r);
         clock_gettime(CLOCK_MONOTONIC, &end);
 
-        for(int i=0; i<p; i++)
-        {
-            for(int j=0; j<r; j++)
-                printf("%d ", c->matrix[i][j]);
-            printf("\n");
-        }
+        // for(int i=0; i<p; i++)
+        // {
+        //     for(int j=0; j<r; j++)
+        //         printf("%d ", c->matrix[i][j]);
+        //     printf("\n");
+        // }
 
         double tdiff = (end.tv_sec - start.tv_sec) + 1e-9*(end.tv_nsec - start.tv_nsec);
         printf("Time: %f\n",tdiff);
