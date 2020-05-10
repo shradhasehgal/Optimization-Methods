@@ -1,4 +1,6 @@
-# Assignment 1 - Optimizations
+# Optimization Methods
+
+Applied various optimization techniques to basic merge sort and matrix multiplication programs to give speed up whilst still maintaining correctness.
 
 ## Getting started
 
